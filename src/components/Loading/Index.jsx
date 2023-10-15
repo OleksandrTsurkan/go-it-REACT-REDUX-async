@@ -4,7 +4,7 @@ import { selectorAppState } from 'store/appStore/selectors';
 
 const Loader = () => {
   const { isLoading } = useSelector(selectorAppState);
-  return isLoading && <div>Loading...</div>;
+  return isLoading && <h1>Loading...</h1>;
 };
 
 export default Loader;
