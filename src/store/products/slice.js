@@ -1,13 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import { getAllProducts, getProduct } from './thunks';
-import {
-  handleFullfilled,
-  handleFullfilledAll,
-  handleFullfilledSingle,
-  handlePending,
-  handleRejected,
-} from './helpers';
+import { handleFullfilledAll, handleFullfilledSingle } from './helpers';
 
 const productsSlice = createSlice({
   name: 'products',
@@ -20,13 +14,7 @@ const productsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getAllProducts.fulfilled, handleFullfilledAll)
-      .addCase(getProduct.fulfilled, handleFullfilledSingle)
-      .addMatcher(action => action.type.endsWith('/pending'), handlePending)
-      .addMatcher(action => action.type.endsWith('/rejected'), handleRejected)
-      .addMatcher(
-        action => action.type.endsWith('/fulfilled'),
-        handleFullfilled
-      );
+      .addCase(getProduct.fulfilled, handleFullfilledSingle);
   },
 });
 

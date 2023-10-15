@@ -4,6 +4,8 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from 'redux';
 import { productsReducer } from './products/slice';
+import { userReducer } from './users/slice';
+import { appReducer } from './appStore/slice';
 
 const persistConfig = {
   key: 'root',
@@ -30,4 +32,6 @@ export const reducer = {
   todo: persistedReducer,
   other: persistedReducer2,
   products: productsReducer,
+  users: userReducer,
+  appState: appReducer,
 };
