@@ -17,6 +17,6 @@ export const getProducts = async () => {
 };
 
 export const removeProduct = async id => {
-  const { data } = await axios.delete(`products/${id}`);
+  const { data } = await axios.delete('products');
   return data;
 };

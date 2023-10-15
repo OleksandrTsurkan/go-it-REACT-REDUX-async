@@ -8,7 +8,6 @@ import {
   deleteTodo,
   updateTodo,
 } from '../../store/todo/slice';
-import { getAllProducts } from 'store/products/slice';
 
 const TodoList = () => {
   const { todo } = useSelector(store => store.todo);
@@ -36,12 +35,9 @@ const TodoList = () => {
   const handleCheck = id => {
     dispatch(updateTodo(id));
   };
-  const handleClick = second => {
-    dispatch(getAllProducts());
-  };
+
   return (
     <div className="container">
-      <button onClick={handleClick}>thunk</button>
       <FormCreateTodo createTodo={createTodo} />
       <FormFilterTodo filterTodo={filterTodo} />
       {todo && (
