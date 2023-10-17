@@ -1,7 +1,8 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Header = ({ toggleModal }) => {
-  return (
+  const navigate = useNavigate()
+return (
     <nav className="navbar bg-dark mb-3">
       <div className="container-fluid">
         <NavLink className="navbar-brand mb-0 h1 text-success" to="/home">
@@ -18,6 +19,9 @@ const Header = ({ toggleModal }) => {
         </Link>
         <button onClick={toggleModal} className="btn btn-outline-success">
           Open Modal
+        </button>
+        <button onClick={()=> navigate('/login')} className="btn btn-outline-success">
+          Login
         </button>
       </div>
     </nav>

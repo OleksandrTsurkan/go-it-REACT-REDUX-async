@@ -2,36 +2,39 @@ import { todoReducer } from './todo/slice';
 
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import { productsReducer } from './products/slice';
 import { userReducer } from './users/slice';
 import { appReducer } from './appStore/slice';
+import { authReducer } from './auth/slice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'auth',
   storage,
-  blackList: ['password'],
+  // blackList: ['password'],
+  whitelist: ['token'],
 };
 
-const persistConfig2 = {
-  key: 'other',
-  storage,
-};
+// const persistConfig2 = {
+//   key: 'other',
+//   storage,
+// };
 
-const persistedReducer = persistReducer(persistConfig, todoReducer);
+const authPersistedReducer = persistReducer(persistConfig, authReducer);
 
-const otherReducers = combineReducers({
-  users: todoReducer,
-  items: todoReducer,
-  password: todoReducer,
-});
+// const otherReducers = combineReducers({
+//   users: todoReducer,
+//   items: todoReducer,
+//   password: todoReducer,
+// });
 
-const persistedReducer2 = persistReducer(persistConfig2, otherReducers);
+// const persistedReducer2 = persistReducer(persistConfig2, otherReducers);
 
 export const reducer = {
-  todo: persistedReducer,
-  other: persistedReducer2,
+  todo: authReducer,
+  // other: persistedReducer2,
   products: productsReducer,
   users: userReducer,
   appState: appReducer,
+  auth: authPersistedReducer,
 };
