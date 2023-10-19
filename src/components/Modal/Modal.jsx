@@ -5,10 +5,10 @@ const Modal = ({ children, toggleModal }) => {
 		console.log('render')
 	})
 
-	const handleKeyEsc = (e) => {
-		if (e.code === 'Escape') this.props.toggleModal()
-		console.log('Esc')
-	}
+	// const handleKeyEsc = (e) => {
+	// 	if (e.code === 'Escape') this.props.toggleModal()
+	// 	console.log('Esc')
+	// }
 	return (
 		<div
 			className='modal fade show'
