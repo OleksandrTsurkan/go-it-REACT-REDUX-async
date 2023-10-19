@@ -1,19 +1,23 @@
-import { signUp } from 'api/auth';
-import FormRegistration from 'components/Forms/FormRegistration';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import FormRegistration from '../../components/Forms/FormRegistration'
+import { useDispatch, useSelector } from 'react-redux'
+import { registrationThunk } from '../../store/auth/thunks'
+import { authSelector } from '../../store/auth/selector'
+import { useEffect } from 'react'
 
 const Registration = () => {
-  const navigate = useNavigate;
-  const registration = async body => {
-    try {
-      await signUp(body);
-      navigate('/');
-    } catch (error) {
-      console.log('first', error);
-    }
-  };
-  return <FormRegistration registration={{ registration }} />;
-};
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const isAuth = useSelector(authSelector)
+	const registration = (body) => {
+		dispatch(registrationThunk(body))
+	}
 
-export default Registration;
+	useEffect(() => {
+		isAuth && navigate('/')
+	}, [isAuth, navigate])
+
+	return <FormRegistration registration={registration} />
+}
+
+export default Registration

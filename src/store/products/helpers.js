@@ -1,7 +1,7 @@
-export const handleFullfilledAll = (state, { payload }) => {
-  state.products = payload.products;
-};
+export const handleFulfilledAll = (state, { payload }) => {
+	state.products = payload.products
+}
 
-export const handleFullfilledSingle = (state, { payload }) => {
-  state.singleProduct = payload;
-};
+export const handleFulfilledSingle = (state, { payload }) => {
+	state.singleProduct = payload
+}

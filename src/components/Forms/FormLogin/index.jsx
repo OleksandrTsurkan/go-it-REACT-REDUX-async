@@ -1,9 +1,10 @@
-const FormRegistration = ({ registration }) => {
+import { Link } from 'react-router-dom'
+
+const FormLogin = ({ login }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		const { name, email, password } = e.target.elements
-		registration({
-			firstName: name.value,
+		const { email, password } = e.target.elements
+		login({
 			email: email.value,
 			password: password.value,
 		})
@@ -11,17 +12,6 @@ const FormRegistration = ({ registration }) => {
 	return (
 		<div className='card p-5 mx-auto' style={{ width: 500 }}>
 			<form onSubmit={handleSubmit}>
-				<div className='mb-3'>
-					<label htmlFor='exampleInputName' className='form-label'>
-						Name
-					</label>
-					<input
-						type='text'
-						name='name'
-						className='form-control'
-						id='exampleInputName'
-					/>
-				</div>
 				<div className='mb-3'>
 					<label htmlFor='exampleInputEmail1' className='form-label'>
 						Email address
@@ -49,11 +39,12 @@ const FormRegistration = ({ registration }) => {
 					/>
 				</div>
 				<button type='submit' className='btn btn-primary'>
-					Registration
+					Login
 				</button>
 			</form>
+			<Link to='/registration'>Registration</Link>
 		</div>
 	)
 }
 
-export default FormRegistration
+export default FormLogin

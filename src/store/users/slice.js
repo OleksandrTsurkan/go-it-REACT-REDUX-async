@@ -1,21 +1,21 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUsers } from 'api/users';
-import { handleFullfilledAll } from './helpers';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { getUsers } from '../../api/users'
+import { handleFulfilledAll } from './helpers'
 
 const initialState = {
-  users: null,
-};
+	users: null,
+}
 
 export const getUsersThunk = createAsyncThunk('users/getUsers', () =>
-  getUsers()
-);
+	getUsers()
+)
 
-export const usersSlice = createSlice({
-  name: 'users',
-  initialState,
-  extraReducers: builder => {
-    builder.addCase(getUsersThunk.fulfilled, handleFullfilledAll);
-  },
-});
+const usersSlice = createSlice({
+	name: 'users',
+	initialState,
+	extraReducers: (builder) => {
+		builder.addCase(getUsersThunk.fulfilled, handleFulfilledAll)
+	},
+})
 
-export const userReducer = usersSlice.reducer;
+export const userReducer = usersSlice.reducer

@@ -1,5 +1,5 @@
 export const initialState = {
-  products: null,
-  singleProduct: null,
-  filter: '',
-};
+	products: null,
+	singleProduct: null,
+	filter: '',
+}

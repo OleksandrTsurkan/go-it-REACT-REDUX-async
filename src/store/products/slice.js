@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { initialState } from './initialState';
-import { getAllProducts, getProduct } from './thunks';
-import { handleFullfilledAll, handleFullfilledSingle } from './helpers';
+import { createSlice } from '@reduxjs/toolkit'
+import { getAllProducts, getProduct } from './thunks'
+import { initialState } from './initialState'
+import { handleFulfilledAll, handleFulfilledSingle } from './helpers'
 
 const productsSlice = createSlice({
-  name: 'products',
-  initialState,
-  reducers: {
-    setFilterAction: (state, { payload }) => {
-      state.filter = payload;
-    },
-  },
-  extraReducers: builder => {
-    builder
-      .addCase(getAllProducts.fulfilled, handleFullfilledAll)
-      .addCase(getProduct.fulfilled, handleFullfilledSingle);
-  },
-});
+	name: 'products',
+	initialState,
+	reducers: {
+		setFilterAction: (state, { payload }) => {
+			state.filter = payload
+		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(getAllProducts.fulfilled, handleFulfilledAll)
+			.addCase(getProduct.fulfilled, handleFulfilledSingle)
+	},
+})
 
-export const productsReducer = productsSlice.reducer;
-export const { setFilterAction } = productsSlice.actions;
+export const productsReducer = productsSlice.reducer
+export const { setFilterAction } = productsSlice.actions

@@ -1,59 +1,73 @@
-import { useState } from 'react';
-import { Todo } from '../Todo';
-import FormCreateTodo from '../Forms/FormCreateTodo';
-import FormFilterTodo from '../Forms/FormFilterTodo';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react'
+import Todo from '../Todo'
+import FormCreateTodo from '../Forms/FormCreateTodo'
+import FormFilterTodo from '../Forms/FormFilterTodo'
+import { useSelector, useDispatch } from 'react-redux'
 import {
-  createTodoAction,
-  deleteTodo,
-  updateTodo,
-} from '../../store/todo/slice';
+	createTodoAction,
+	deleteTodo,
+	updateTodo,
+} from '../../store/todo/slice'
+// import { createTodoAction } from '../../store/todo/actions'
 
 const TodoList = () => {
-  const { todo } = useSelector(store => store.todo);
+	const { todo } = useSelector((store) => store.todo)
+	const dispatch = useDispatch()
+	const [filteredTodo, setFilteredTodo] = useState(null)
 
-  const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	const localData = localStorage.getItem('todo')
+	// 	localData && JSON.parse(localData).length
+	// 		? setTodo(JSON.parse(localData))
+	// 		: setTodo(todoData)
+	// }, [])
 
-  const [filteredTodo, setFilteredTodo] = useState(null);
+	// useEffect(() => {
+	// 	todo && localStorage.setItem('todo', JSON.stringify(todo))
+	// }, [todo])
 
-  const handleDelete = id => {
-    dispatch(deleteTodo(id));
-  };
+	// const handleClick = () => {
+	// 	this.setState({ isShowTodos: true })
+	// }
 
-  const createTodo = dataByForm => {
-    dispatch(createTodoAction(dataByForm));
-  };
+	const handleDelete = (id) => {
+		dispatch(deleteTodo(id))
+	}
 
-  const filterTodo = filterQuery => {
-    setFilteredTodo(
-      todo.filter(el =>
-        el.title.toLowerCase().includes(filterQuery.toLowerCase())
-      )
-    );
-  };
+	const createTodo = (dataByForm) => {
+		dispatch(createTodoAction(dataByForm))
+	}
 
-  const handleCheck = id => {
-    dispatch(updateTodo(id));
-  };
+	const filterTodo = (filterQuery) => {
+		setFilteredTodo(
+			todo.filter((el) =>
+				el.title.toLowerCase().includes(filterQuery.toLowerCase())
+			)
+		)
+	}
 
-  return (
-    <div className="container">
-      <FormCreateTodo createTodo={createTodo} />
-      <FormFilterTodo filterTodo={filterTodo} />
-      {todo && (
-        <ul className="list-group">
-          {(filteredTodo ?? todo).map(el => (
-            <Todo
-              todo={el}
-              key={el.id}
-              handleDelete={handleDelete}
-              handleCheck={handleCheck}
-            />
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+	const handleCheck = (id) => {
+		dispatch(updateTodo(id))
+	}
 
-export default TodoList;
+	return (
+		<div className='container'>
+			<FormCreateTodo createTodo={createTodo} />
+			<FormFilterTodo filterTodo={filterTodo} />
+			{todo && (
+				<ul className='list-group'>
+					{(filteredTodo ?? todo).map((el) => (
+						<Todo
+							todo={el}
+							key={el.id}
+							handleDelete={handleDelete}
+							handleCheck={handleCheck}
+						/>
+					))}
+				</ul>
+			)}
+		</div>
+	)
+}
+
+export default TodoList
